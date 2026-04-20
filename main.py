@@ -3,8 +3,11 @@ import collections
 import numbers
 from math import sqrt
 from linear_solver import solve
+from collections.abc import Sequence
+from qr import qr
+from eigenvalues import diagonal, eigenvals
 
-class linspace(collections.abc.Sequence):
+class linspace(Sequence):
     """linspace(start, stop, num) -> linspace object
 
     Return a virtual sequence of num numbers from start to stop (inclusive).
@@ -132,6 +135,31 @@ def main():
     print(f"  λ₁ = {lambda1}")
     print(f"  λ₂ = {lambda2}")
 
+    # Ejercicio 2:
+    
+    print("=" * 55)
+    print("  Ejercicio 2: Método QR")
+    print("=" * 55)
+    
+    A = [
+        [ 5.0, -2.0],
+        [-2.0,  8.0],
+    ]
+    
+    N = 10
+    
+    A_final = eigenvals(A, N)
+    
+    print("\nMatriz después de 10 iteraciones (A_k):")
+    for fila in A_final:
+        print(f"{fila}")
+        
+    eig_qr = diagonal(A_final)
+    
+    print("\nEigenvalores aproximados (QR):")
+    for val in eig_qr:
+        print(f"{val}")
+        
 
 if __name__ == "__main__":
     main()

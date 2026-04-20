@@ -24,10 +24,13 @@ def eigenvals(A:list[list[float]], n:int = 100)->list[float]:
     for _ in range(n):
         Q,R =qr(Ak)           #paso 1: factorizar
         Ak= matmul(R,Q)       #paso 2: recombinar al revés
+        
+    return Ak
 
+def diagonal(A: list[list[float]])->(list[float]):
+    return [A[i][i] for i in range(len(A))]
+        
 
-    #Los eigenvalores están en la diagonal de Ak
-    return [Ak[i][i] for i in range(len(Ak))]        
 
 # ─── Prueba rápida ────────────────────────────────────────────────────────────
 if __name__ == "__main__":
@@ -37,16 +40,19 @@ if __name__ == "__main__":
         [1.0, 2.0, 1.0],
         [0.0, 1.0, 2.0],
     ]
- 
-    vals = eigenvals(A, n=100)
-    print("Eigenvalores aproximados:")
+
+    A_final = eigenvals(A, n=100)
+    #Eigenvalores aproximados
+    vals = diagonal(A_final)
+
+    print("\nEigenvalores aproximados:")
     for i, v in enumerate(vals):
-        print(f"  λ{i+1} = {round(v, 6)}")
- 
-    # Los valores reales de esta matriz son: 2-√2 ≈ 0.5858, 2, 2+√2 ≈ 3.4142
+       print(f"  λ{i+1} = {round(v, 6)}")
+
+    # Valores exactos
     import math
     print("\nValores exactos para comparar:")
     print(f"  λ1 = {round(2 - math.sqrt(2), 6)}")
     print(f"  λ2 = {round(2.0, 6)}")
     print(f"  λ3 = {round(2 + math.sqrt(2), 6)}")
- 
+    
