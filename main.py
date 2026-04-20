@@ -4,6 +4,9 @@ import numbers
 from math import sqrt
 from linear_solver import solve
 
+from eigenvalues import eigen_epsilon, eigenvals
+
+
 class linspace(collections.abc.Sequence):
     """linspace(start, stop, num) -> linspace object
 
@@ -14,7 +17,7 @@ class linspace(collections.abc.Sequence):
 
     def __init__(self, start, stop, num):
         if not isinstance(num, numbers.Integral) or num <= 1:
-            raise ValueError('num must be an integer > 1')
+            raise ValueError("num must be an integer > 1")
         self.start, self.stop, self.num = start, stop, num
         self.step = (stop - start) / (num - 1)
 
@@ -27,20 +30,20 @@ class linspace(collections.abc.Sequence):
         if i < 0:
             i = self.num + i
         if i >= self.num:
-            raise IndexError('linspace object index out of range')
+            raise IndexError("linspace object index out of range")
         if i == self.num - 1:
             return self.stop
         return self.start + i * self.step
 
     def __repr__(self):
-        return '{}({}, {}, {})'.format(type(self).__name__,
-                                       self.start, self.stop, self.num)
+        return "{}({}, {}, {})".format(
+            type(self).__name__, self.start, self.stop, self.num
+        )
 
     def __eq__(self, other):
         if not isinstance(other, linspace):
             return False
-        return ((self.start, self.stop, self.num) ==
-                (other.start, other.stop, other.num))
+        return (self.start, self.stop, self.num) == (other.start, other.stop, other.num)
 
     def __ne__(self, other):
         return not self == other
@@ -52,6 +55,7 @@ class linspace(collections.abc.Sequence):
 # ─────────────────────────────────────────────────────────────────────────────
 # Utilidades para el Ejercicio 1
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def polinomio_caracteristico_2x2(A: list[list[float]]) -> tuple[float, float, float]:
     """Calcula los coeficientes (a, b, c) del polinomio característico
@@ -68,9 +72,9 @@ def polinomio_caracteristico_2x2(A: list[list[float]]) -> tuple[float, float, fl
     a11, a12 = A[0]
     a21, a22 = A[1]
 
-    a =  1.0
-    b = -(a11 + a22)          # negativo de la traza
-    c =  a11 * a22 - a12 * a21   # determinante
+    a = 1.0
+    b = -(a11 + a22)  # negativo de la traza
+    c = a11 * a22 - a12 * a21  # determinante
     return a, b, c
 
 
@@ -98,6 +102,7 @@ def formula_cuadratica(a: float, b: float, c: float) -> tuple[float, float]:
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def main():
     # ── Ejercicio 1: Eigenvalores por el polinomio característico ─────────────
 
@@ -106,8 +111,8 @@ def main():
     print("=" * 55)
 
     A = [
-        [ 5.0, -2.0],
-        [-2.0,  8.0],
+        [5.0, -2.0],
+        [-2.0, 8.0],
     ]
 
     print("\nMatriz A:")
@@ -117,7 +122,7 @@ def main():
     # Paso 1 — coeficientes del polinomio característico
     a, b, c = polinomio_caracteristico_2x2(A)
 
-    print(f"\nPolinomio característico det(A - λI) = 0:")
+    print("\nPolinomio característico det(A - λI) = 0:")
     print(f"  λ² + ({b})λ + ({c}) = 0")
     print(f"  (coeficientes: a={a}, b={b}, c={c})")
 
@@ -128,11 +133,24 @@ def main():
     # Paso 3 — raíces (eigenvalores)
     lambda1, lambda2 = formula_cuadratica(a, b, c)
 
-    print(f"\nEigenvalores:")
+    print("\nEigenvalores:")
     print(f"  λ₁ = {lambda1}")
-    print(f"  λ₂ = {lambda2}")
+    print(f"  λ₂ = {lambda2}\n")
+
+    print("=" * 55)
+    print(" Ejercicio 3: Método QR")
+    print("=" * 55)
+
+    print("\nMatriz A:")
+    for row in A:
+        print(f"  {row}")
+
+    Ak = eigen_epsilon(A, 1000, 1e-10)
+
+    print("\nMatriz con eigenvalores:")
+    for row in Ak:
+        print(f"  {row}")
 
 
 if __name__ == "__main__":
     main()
-
