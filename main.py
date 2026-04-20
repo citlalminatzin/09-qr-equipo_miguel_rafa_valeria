@@ -5,7 +5,7 @@ from math import sqrt
 from linear_solver import solve
 from collections.abc import Sequence
 from qr import qr
-from eigenvalues import diagonal, eigenvals
+
 
 from eigenvalues import eigen_epsilon, eigenvals
 
