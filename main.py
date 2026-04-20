@@ -146,7 +146,7 @@ def main():
     print("  Ejercicio 2: Método QR")
     print("=" * 55)
     
-    print("\n--- Método QR (10 iteraciones) ---")
+    
     eigs_qr_10 = eigenvals(A, 10)
 
     print("Eigenvalores aproximados (QR):")
