@@ -140,6 +140,21 @@ def main():
     print(f"  λ₁ = {lambda1}")
     print(f"  λ₂ = {lambda2}\n")
 
+# Ejercicio 2:
+    
+    print("=" * 55)
+    print("  Ejercicio 2: Método QR")
+    print("=" * 55)
+    
+    print("\n--- Método QR (10 iteraciones) ---")
+    eigs_qr_10 = eigenvals(A, 10)
+
+    print("Eigenvalores aproximados (QR):")
+    for val in eigs_qr_10:
+        print(f"  {val}")
+        
+     # Ejercicio 3:
+        
     print("=" * 55)
     print(" Ejercicio 3: Método QR")
     print("=" * 55)
@@ -154,31 +169,5 @@ def main():
     for row in Ak:
         print(f"  {row}")
 
-    # Ejercicio 2:
-    
-    print("=" * 55)
-    print("  Ejercicio 2: Método QR")
-    print("=" * 55)
-    
-    A = [
-        [ 5.0, -2.0],
-        [-2.0,  8.0],
-    ]
-    
-    N = 10
-    
-    A_final = eigenvals(A, N)
-    
-    print("\nMatriz después de 10 iteraciones (A_k):")
-    for fila in A_final:
-        print(f"{fila}")
-        
-    eig_qr = diagonal(A_final)
-    
-    print("\nEigenvalores aproximados (QR):")
-    for val in eig_qr:
-        print(f"{val}")
-        
-
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
