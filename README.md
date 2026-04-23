@@ -24,18 +24,18 @@ Realiza la factorización QR de una matriz M.
     Idea:
       - Las columnas de M son los vectores que le pasamos a Gram-Schmidt
       - Gram-Schmidt nos devuelve columnas ortonormales → esas forman Q
-      - R se obtiene como Q^T * M  (porque A = QR  =>  Q^T A = Q^T QR = IR = R)
+      - R se obtiene como $$Q^T * M  (porque A = QR  =>  Q^T A = Q^T QR = IR = R)$$
 - linear_solve.py: soluciona el sistema de ecuaciones lineales Ax = b 
 - eigenvalues.py: 
     Realiza n iteraciones del algoritmo QR para calcular
     los eigenvalores de A
 
     Cada iteración:
-     1. Factorizamos A^{k-1}= Q * R
-     2. Calculamos A^{k}= R* Q    ← ojo: orden invertido
+     1. Factorizamos $$A^{k-1}= Q * R$$
+     2. Calculamos $$A^{k}= R* Q $$   ← ojo: orden invertido
 
-    La matriz A^{k} converge a una matriz (casi) diagonal
-    donde cada entrada A[i][j] es un eigenvalor
+    La matriz $$A^{k}$$ converge a una matriz (casi) diagonal
+    donde cada entrada $$A[i][j]$$ es un eigenvalor
 
     Devuelve la estimación de los eigenvalores
 - main.py: resuelve los ejercicios 1, 2, 3.
