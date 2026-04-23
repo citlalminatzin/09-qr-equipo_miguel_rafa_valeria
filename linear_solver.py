@@ -4,7 +4,7 @@ from gram_schmidt import matvec, transpose
 from qr import qr
 
 def solve(A: list[list[float]], b:list[float]) -> list[float]:
-    """Soluciona el sistema de ecuaciones lineales Ax = b"""
+
     
     m = len(A) #número de filas
     n = len(A[0]) #número de columnas

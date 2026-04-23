@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
-"""
-Calcula la factorización de gram-schmidt
-para una matriz de tamaño n
-"""
+
 
 def dot(x: list[float], y: list[float]) -> float:
     """Producto punto entre dos vectores.

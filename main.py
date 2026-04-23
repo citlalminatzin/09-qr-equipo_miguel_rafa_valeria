@@ -153,6 +153,14 @@ def main():
     for val in eigs_qr_10:
         print(f"  {val}")
         
+    lambda_exactos = sorted([lambda1, lambda2])
+    lambda_qr = sorted(eigs_qr_10)
+    
+    #Error relativo:
+    for i in range (len(lambda_exactos)):
+        error_real = abs(lambda_exactos[i]-lambda_qr[i])
+        print(f"Error relativo λ{i+1}: {error_real}")
+        
      # Ejercicio 3:
         
     print("=" * 55)

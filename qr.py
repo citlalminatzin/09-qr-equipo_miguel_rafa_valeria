@@ -7,16 +7,7 @@ Realiza la factorización QR de una matriz
 from gram_schmidt import gm, transpose, dot
 
 def qr(M: list[list[float]]) -> tuple[list[list[float]], list[list[float]]]:
-    """Realiza la factorización QR de una matriz M.
- 
-    Q: matriz cuyas columnas son los vectores ortonormales (unitaria)
-    R: matriz triangular superior
- 
-    Idea:
-      - Las columnas de M son los vectores que le pasamos a Gram-Schmidt
-      - Gram-Schmidt nos devuelve columnas ortonormales → esas forman Q
-      - R se obtiene como Q^T * M  (porque A = QR  =>  Q^T A = Q^T QR = IR = R)
-    """
+    
     # 1. Extraemos las columnas de M  (M está guardada como lista de filas)
     columnas = transpose(M)          # cada elemento es una columna de M
  

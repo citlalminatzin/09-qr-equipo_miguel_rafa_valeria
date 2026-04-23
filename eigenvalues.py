@@ -5,19 +5,7 @@ from gram_schmidt import matmul
 
 
 def eigenvals(A: list[list[float]], n: int = 100) -> list[float]:
-    """
-    Realiza n iteraciones del algoritmo QR para calcular
-    los eigenvalores de A
-
-    Cada iteración:
-     1. Factorizamos A^{k-1}= Q * R
-     2. Calculamos A^{k}= R* Q    ← ojo: orden invertido
-
-    La matriz A^{k} converge a una matriz (casi) diagonal
-    donde cada entrada A[i][j] es un eigenvalor
-
-    Devuelve la estimación de los eigenvalores
-    """
+    
 
     Ak = A  # A^0 = A original
 
