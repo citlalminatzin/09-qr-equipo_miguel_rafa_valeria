@@ -176,6 +176,7 @@ def main():
     print("\nMatriz con eigenvalores:")
     for row in Ak:
         print(f"  {row}")
+        
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
