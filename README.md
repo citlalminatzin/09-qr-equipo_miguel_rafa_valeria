@@ -37,6 +37,17 @@ Realiza la factorización QR de una matriz M.
     Devuelve la estimación de los eigenvalores
 - main.py: resuelve los ejercicios 1, 2, 3.
 
+## Introducción
+
+En esta práctica implementamos el método QR para el cálculo de eigenvalores de matrices cuadradas reales. Los eigenvalores son uno de los conceptos más importantes del álgebra lineal, ya que describen el comportamiento de una transformación lineal sobre un espacio vectorial. Formalmente, dado un vector no nulo $v$ y una matriz $A$, decimos que $\lambda$ es un eigenvalor de $A$ si se cumple $Av = \lambda v$, es decir, la transformación únicamente escala al vector $v$ sin cambiar su dirección.
+
+El cálculo de eigenvalores tiene aplicaciones en una enorme variedad de áreas: en física describe los modos normales de vibración de un sistema; en ingeniería se usa para el análisis de estabilidad de estructuras; en ciencias de la computación es la base del algoritmo PageRank de Google y de técnicas de compresión como PCA (Análisis de Componentes Principales); y en aprendizaje automático aparece en métodos de reducción de dimensionalidad y en el análisis espectral de grafos.
+
+Para matrices pequeñas, los eigenvalores pueden calcularse de forma exacta resolviendo el polinomio característico $\det(A - \lambda I) = 0$. Sin embargo, para matrices grandes este enfoque es impráctico, ya que resolver un polinomio de grado $n$ es numéricamente inestable y computacionalmente costoso. Es aquí donde los métodos iterativos como el método QR cobran relevancia.
+
+El método QR se basa en la factorización de una matriz $A$ como producto de una matriz ortogonal $Q$ y una matriz triangular superior $R$, de forma que $A = QR$. A partir de esta factorización se construye una sucesión de matrices similares entre sí que convergen a una forma triangular (o diagonal, si la matriz es simétrica), revelando los eigenvalores en la diagonal. En esta práctica partimos del cálculo analítico mediante el polinomio característico como referencia exacta, implementamos el método QR simple con un número fijo de iteraciones y finalmente lo extendemos con un criterio de parada basado en tolerancia para tener control sobre la precisión del resultado.
+
+
 
 ## Ejercicios 
 
@@ -91,6 +102,14 @@ $$
 \text{diag}(A^k) \approx [\lambda_1,\ \lambda_2] = [4.0,\ 9.0]
 $$
 
+## Conclusiones
 
+El método QR demostró ser una herramienta efectiva y confiable para el cálculo iterativo de eigenvalores. A lo largo de los tres ejercicios pudimos comparar el resultado analítico exacto obtenido mediante el polinomio característico con las aproximaciones sucesivas del método numérico, observando lo siguiente:
+
+- El método converge rápidamente para matrices simétricas, en concordancia con el teorema QR: con apenas 10 iteraciones el error absoluto es prácticamente cero para la matriz trabajada.
+- El criterio de tolerancia $\varepsilon$ del Ejercicio 3 ofrece un control más fino de la precisión sin necesidad de fijar el número de iteraciones de antemano, lo que lo hace más flexible que el método simple del Ejercicio 2.
+- La factorización QR construida a partir de Gram-Schmidt funciona correctamente como bloque base del algoritmo iterativo, validando también la implementación de la práctica anterior.
+
+En conjunto, esta práctica ilustra cómo un método numérico iterativo puede alcanzar la misma precisión que un cálculo analítico, con la ventaja de ser generalizable a matrices de cualquier tamaño donde el polinomio característico no es práctico de resolver directamente.
 
 
