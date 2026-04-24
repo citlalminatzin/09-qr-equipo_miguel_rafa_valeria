@@ -1,7 +1,4 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23599173)
 # Práctica 8
-
-¡Adentrémonos en el increíble mundo del álgebra lineal numérica! OwO
 
 ## Integrantes
 
@@ -45,7 +42,7 @@ Realiza la factorización QR de una matriz M.
 
 En esta práctica implementamos métodos fundamentales del álgebra lineal que permiten transformar matrices y el cálculo de sus eigenvalores.
 
-Ejercicio 1: Cálculos con el polinomio característico
+### Ejercicio 1: Cálculos con el Polinomio Característico 
 Por medio del método del polinomio característico, calculamos los eigenvalores de la siguiente matriz
 
 $$
@@ -62,10 +59,37 @@ Posteriormente calculamos el determinante de dicho polinomio mediante la funció
 Obtenemos las raíces del polinomio característico mediante la función:
 `formula_cuadratica`, y obtenemos dichos eigenvalores.
 
-Ejercicio 2: El Método QR Simple
-Programamos el método QR para calcular los eigenvalores de una matriz real A de tamaño nxn y suponiendo que la matriz A es simétrica.
-Utilizamos la función `eigenvals` que recibe una matriz y un número de iteraciones. El método deberá regresar la matriz Ak después de las N iteraciones.
 
+### Ejercicio 2: El Método QR Simple
+Programamos el método QR para calcular los eigenvalores de una matriz real $A$ de tamaño n×n, suponiendo que la matriz $A$ es simétrica.
+
+Utilizamos la función `eigenvals` que recibe una matriz y un número de iteraciones $N$. El método regresa la matriz $A^k$ después de las $N$ iteraciones, extrayendo los eigenvalores de su diagonal.
+
+El algoritmo QR simple es el siguiente:
+
+- **Inicialización:** $A_0 = A$, factorizamos $A_0 = Q_0 R_0$
+- **Iteración $m$:** $A_m = R_{m-1} Q_{m-1}$, factorizamos $A_m = Q_m R_m$
+
+Conforme $m$ crece, los valores en la diagonal de $A_m$ se aproximan a los eigenvalores de $A$.
+
+Con **10 iteraciones** sobre la matriz del Ejercicio 1, se comparan los eigenvalores obtenidos con los exactos calculando el error absoluto $|\lambda_{\text{exacto}} - \lambda_{\text{QR}}|$.
+
+### Ejercicio 3: El Método QR con Control de Precisión
+
+Extendemos el método QR agregando un criterio de parada basado en una tolerancia $\varepsilon$: el algoritmo detiene las iteraciones cuando todos los elementos fuera de la diagonal de $A^k$ son menores que $\varepsilon$.
+
+La función `eigen_epsilon` recibe:
+- Matriz $A$ cuadrada y simétrica
+- Número máximo de iteraciones $N$
+- Tolerancia $\varepsilon$ (precisión deseada)
+
+Y devuelve la matriz $A^k$ una vez que los valores fuera de la diagonal son menores que $\varepsilon$, o bien cuando se alcanza el número máximo de iteraciones.
+
+Probamos con la matriz del Ejercicio 1, tolerancia $\varepsilon = 1 \times 10^{-10}$ y $N = 1000$ iteraciones. La diagonal de la matriz resultante coincide con los eigenvalores del Ejercicio 1:
+
+$$
+\text{diag}(A^k) \approx [\lambda_1,\ \lambda_2] = [4.0,\ 9.0]
+$$
 
 
 
